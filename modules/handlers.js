@@ -10,7 +10,6 @@ exports.upload = function(request, response) {
         response.write("received image:<br/>");
         response.write("<img src='/show' />");
         response.end();
-
     });
 }
 
@@ -25,12 +24,13 @@ exports.welcome = function(request, response) {
 
 exports.error = function(request, response) {
     console.log("Nie wiem, co robić");
+    response.writeHead(404, {"Content-Type": "text/plain; charset=utf-8"});
     response.write("404 :(");
     response.end();
 }
 
 exports.show = function(request, response) {
-    fs.readFile("text.png", "binary", function(error, file) {
+    fs.readFile("test.png", "binary", function(error, file) {
         response.writeHead(200, {"Content-Type": "image/png"});
         response.write(file, "binary");
         response.end();
